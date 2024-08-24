@@ -40,7 +40,7 @@ io.on( "connection", async ( socket ) => {
 
     socket.on( "joined", ( id, name ) => {
       socket.data.name = name;
-      io.emit( "joined", id, name );
+      io.emit( "note", id, name, "joined!" );
     } );
 
     socket.on( "msg", ( msg, id, name ) => {
@@ -56,7 +56,7 @@ io.on( "connection", async ( socket ) => {
 
     socket.on( "disconnect", () => {
       console.log( socket.id, " disconnected!" );
-      io.emit( "bye", socket.id, socket.data.name );
+      io.emit( "note", socket.id, socket.data.name, "left!" );
     } );
 
   } catch ( e ) {
