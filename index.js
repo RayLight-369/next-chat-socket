@@ -39,6 +39,7 @@ io.on( "connection", async ( socket ) => {
     socket.emit( "connection", { msg: "connected" } );
 
     socket.on( "joined", ( id, name ) => {
+      socket.data.name = name;
       io.emit( "joined", id, name );
     } );
 
@@ -55,6 +56,7 @@ io.on( "connection", async ( socket ) => {
 
     socket.on( "disconnect", () => {
       console.log( socket.id, " disconnected!" );
+      io.emit( "bye", socket.id, socket.data.name );
     } );
 
   } catch ( e ) {
