@@ -38,7 +38,7 @@ io.on( "connection", async ( socket ) => {
 
     socket.emit( "connection", { msg: "connected" } );
 
-    socket.on( "msg", ( msg, id ) => {
+    socket.on( "msg", ( msg, id, name ) => {
       io.emit( "msg", msg, id );
     } );
 
