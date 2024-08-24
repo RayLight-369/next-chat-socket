@@ -6,7 +6,7 @@ const server = https.createServer( app );
 const SocketIO = require( "socket.io" );
 const io = new SocketIO.Server( server, {
   cors: {
-    origin: "http://localhost:3000"
+    origin: [ "http://localhost:3000", "https://raytalk.vercel.app" ]
   }
 } );
 // , {
