@@ -47,9 +47,13 @@ io.on( "connection", async ( socket ) => {
       io.emit( "msg", msg, id, name );
     } );
 
+    socket.on( "typing", ( name ) => {
+      socket.broadcast.emit( "typing", name );
+    } );
 
-
-
+    socket.on( "stop typing", ( name ) => {
+      socket.broadcast.emit( "stop typing", name );
+    } );
 
 
 
