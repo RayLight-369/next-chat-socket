@@ -60,6 +60,7 @@ io.on( "connection", async ( socket ) => {
 
 
 
+
     socket.on( "disconnect", () => {
       console.log( socket.id, " disconnected!" );
       io.emit( "note", socket.id, socket.data.name, "left!" );
