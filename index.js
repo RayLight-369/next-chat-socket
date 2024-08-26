@@ -34,6 +34,7 @@ app.get( "/", ( _, res ) => {
 io.on( "connection", async ( socket ) => {
 
   console.log( socket.id, " connected!" );
+
   // console.log( await io.fetchSockets() );
 
   try {
@@ -44,8 +45,8 @@ io.on( "connection", async ( socket ) => {
       io.emit( "note", id, name, "joined!", totalUsers );
     } );
 
-    socket.on( "msg", ( msg, id, name ) => {
-      io.emit( "msg", msg, id, name );
+    socket.on( "msg", ( msg, id, name, media ) => {
+      io.emit( "msg", msg, id, name, media );
     } );
 
     socket.on( "typing", ( name ) => {
