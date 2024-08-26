@@ -29,6 +29,8 @@ app.get( "/", ( _, res ) => {
   res.send( "Hello, world!" );
 } );
 
+
+
 io.on( "connection", async ( socket ) => {
 
   console.log( socket.id, " connected!" );
@@ -36,11 +38,10 @@ io.on( "connection", async ( socket ) => {
 
   try {
 
-    socket.emit( "connection", { msg: "connected" } );
-
-    socket.on( "joined", ( id, name ) => {
+    socket.on( "joined", async ( id, name ) => {
       socket.data.name = name;
-      io.emit( "note", id, name, "joined!" );
+      const totalUsers = ( await io.fetchSockets() ).map( ( socket ) => socket.data.name );
+      io.emit( "note", id, name, "joined!", totalUsers );
     } );
 
     socket.on( "msg", ( msg, id, name ) => {
