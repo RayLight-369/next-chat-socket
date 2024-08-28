@@ -45,8 +45,8 @@ io.on( "connection", async ( socket ) => {
       io.emit( "note", id, name, "joined!", totalUsers );
     } );
 
-    socket.on( "msg", ( msg, id, name, media, date ) => {
-      io.emit( "msg", msg, id, name, media, date );
+    socket.on( "msg", ( msg, id, name, media, audio, date ) => {
+      io.emit( "msg", msg, id, name, media, audio, date );
     } );
 
     socket.on( "typing", ( name ) => {
