@@ -41,8 +41,9 @@ io.on( "connection", async ( socket ) => {
 
     socket.on( "joined", async ( name ) => {
       socket.data.name = name;
-      const totalUsers = ( await io.fetchSockets() ).map( ( socket_ ) => socket_.data.name );
-      io.emit( "note", socket.id, name, "joined!", totalUsers );
+
+      socket.emit( "totalUsers", ( await io.fetchSockets() ).map( ( socket_ ) => socket_.data.name ) );
+      io.emit( "note", socket.id, name, "joined!" );
     } );
 
     socket.on( "msg", ( msg, id, name, media, audio, date ) => {
