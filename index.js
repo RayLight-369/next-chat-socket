@@ -42,7 +42,7 @@ io.on( "connection", async ( socket ) => {
     socket.on( "joined", async ( name ) => {
       socket.data.name = name;
 
-      socket.emit( "totalUsers", ( await io.fetchSockets() ).map( ( socket_ ) => ( { name: socket_.data.name, id: socket_.id } ) ) );
+      socket.emit( "totalUsers", ( await io.fetchSockets() ).map( ( socket_ ) => ( { name: socket_.data.name, id: socket_.id } ) ).filter( user => user.name.trim().length ) );
       io.emit( "note", socket.id, name, "joined!" );
     } );
 
