@@ -39,10 +39,10 @@ io.on( "connection", async ( socket ) => {
 
   try {
 
-    socket.on( "joined", async ( id, name ) => {
+    socket.on( "joined", async ( name ) => {
       socket.data.name = name;
       const totalUsers = ( await io.fetchSockets() ).map( ( socket_ ) => socket_.data.name );
-      io.emit( "note", id, name, "joined!", totalUsers );
+      io.emit( "note", socket.id, name, "joined!", totalUsers );
     } );
 
     socket.on( "msg", ( msg, id, name, media, audio, date ) => {
