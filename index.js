@@ -32,20 +32,6 @@ app.get( "/", ( _, res ) => {
 
 
 
-io.use( async ( socket, next ) => {
-
-
-  const IP = socket.handshake.headers[ "x-forwarded-for" ]?.split( "," )[ 0 ] || socket.handshake.address;
-  const ips = ( await io.fetchSockets() ).map( ( socket_ ) => ( socket_.handshake.headers[ "x-forwarded-for" ]?.split( "," )[ 0 ] || socket_.handshake.address ) );
-
-  if ( ips.some( ip => ip == IP ) ) {
-    return next( new Error( "You are already in chat , maybe on another tab please uthay maro ..." ) );
-  } else {
-    next();
-  }
-
-} );
-
 io.on( "connection", async ( socket ) => {
 
   console.log( socket.id, " connected!" );
