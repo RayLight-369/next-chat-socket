@@ -22,7 +22,9 @@ const io = new SocketIO.Server( server, {
 const PORT = 5261;
 
 
-app.use( cors() );
+app.use( cors( {
+  origin: [ "http://localhost:3000", "https://raytalk.vercel.app" ]
+} ) );
 
 
 app.get( "/", ( _, res ) => {
