@@ -48,8 +48,8 @@ io.on( "connection", async ( socket ) => {
 
     } );
 
-    socket.on( "msg", ( msg, id, name, media, audio, date ) => {
-      io.emit( "msg", msg, id, name, media, audio, date );
+    socket.on( "msg", ( msg, id, name, media, audio, date, file ) => {
+      io.emit( "msg", msg, id, name, media, audio, date, file );
     } );
 
     socket.on( "typing", ( name ) => {
